@@ -1,0 +1,34 @@
+name: CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-region:      ap-southeast-1
+        role-to-assume:  ${{ secrets.AWS_ROLE_ARN }}
+        role-session-name: cd-session
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.4.0
+
+    - name: Terraform Init & Apply
+      run: |
+        cd infra
+        terraform init -input=false
+        terraform fmt -check
+        terraform validate
+        terraform plan -out=tfplan
+        terraform apply -auto-approve tfplan
