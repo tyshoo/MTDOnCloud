@@ -11,7 +11,8 @@ Key features:
 - **Observability**: CloudWatch Logs, Metrics, and optional X-Ray tracing
 
 ## Architecture Diagram
-*-to be appended*
+*-to be appended-*
+
 ![MTDOnCloud Architecture](architecture.png)
 
 *(C4 Container view: Mobile SDK → API GW → Ingest Lambda → SQS → Processor Lambda → DynamoDB & SNS)*
@@ -23,7 +24,7 @@ Key features:
 - GitHub secrets: `AWS_ACCOUNT_ID`, `AWS_ROLE_ARN`
 
 ## Deploy
-
+```bash
 git clone https://github.com/tyshoo/MTDOnCloud
 cd infra
 terraform init
