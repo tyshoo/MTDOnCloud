@@ -30,7 +30,7 @@ cd infra
 terraform init
 terraform apply -auto-approve
 ```
-# Get the ALB endpoint & dashboard:
+### Get the ALB endpoint & dashboard:
 ```bash
 terraform output alb_endpoint
 terraform output cost_dashboard
