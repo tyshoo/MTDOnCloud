@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Log in to Amazon ECR
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build & push Docker image
+      env:
+        AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+        IMAGE_TAG:      ${{ github.sha }}
+      run: |
+        docker build -t $AWS_ACCOUNT_ID.dkr.ecr.ap-southeast-1.amazonaws.com/mtd-engine:${IMAGE_TAG} app/
+        docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-southeast-1.amazonaws.com/mtd-engine:${IMAGE_TAG}
