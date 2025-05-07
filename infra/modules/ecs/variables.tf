@@ -1,0 +1,9 @@
+variable "environment"     { type = string }
+variable "vpc_id"          { type = string }
+variable "public_subnets"  { type = list(string) }
+variable "private_subnets" { type = list(string) }
+variable "container_image" { type = string }
+variable "container_port"  { type = number }
+variable "desired_count"   { type = number }
+variable "region"          { type = string }
+variable "image_tag"       { type = string }
