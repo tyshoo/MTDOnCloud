@@ -24,7 +24,7 @@ Key features:
 
 ## Deploy
 
-git clone <repo_url>
+git clone https://github.com/tyshoo/MTDOnCloud
 cd infra
 terraform init
 terraform apply -auto-approve
