@@ -29,5 +29,19 @@ git clone https://github.com/tyshoo/MTDOnCloud
 cd infra
 terraform init
 terraform apply -auto-approve
+```
+# Get the ALB endpoint & dashboard:
+```bash
+terraform output alb_endpoint
+terraform output cost_dashboard
+```
+Health: curl http://<alb_endpoint>/health
+Security Hub: AWS Console → Security Hub
+Logs/Traces: AWS Console → CloudWatch Logs & X‑Ray
+Cost: AWS Console → CloudWatch Dashboards → <dashboard_name>
 
-
+## Clean Up
+```bash
+cd infra
+terraform destroy -auto-approve
+```
